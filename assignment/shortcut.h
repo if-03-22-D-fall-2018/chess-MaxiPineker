@@ -61,7 +61,7 @@ void assert_equals(int expected, int actual, struct TestCase *tc, const char *ms
 
 /** @return The total number of test cases added to the test.
 */
-int get_test_count();
+int get_test_count()
 
 /** add_test creates a new test case and adds the a test function to
 *** this test case.
