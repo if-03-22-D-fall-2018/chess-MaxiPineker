@@ -87,4 +87,20 @@ void setup_chess_board(ChessBoard chess_board){
 }
 
  struct ChessSquare* get_square(ChessBoard chess_board,File file,Rank rank){
-   
+
+   if ((file > 'h' || file < 'a') && (rank > 8 || rank < 1)) {
+     return 0;
+   }
+
+   return &chess_board[rank][file - 'a'];
+}
+struct ChessPiece get_piece(ChessBoard chess_board, File a, Rank rank){
+    struct ChessPiece piece;
+    if (file > 'h' || rank > 7 || rank < 0 || file 'a') {
+      piece.type=NoPiece;
+      return piece;
+    }
+    piece.type=chess_board[rank][file-'a'].piece.type;
+    piece.colo=chess_board[rank][file-'a'].piec-color;
+    return piece;
+}
