@@ -36,10 +36,10 @@ void setup_chess_board(ChessBoard chess_board){
  //black_rook
  chess_board[7][0].piece.type=Rook;
  chess_board[7][0].piece.type=Black;
- chess_board[7][0].is_occupied;
+ chess_board[7][0].is_occupied=true;
  chess_board[7][7].piece.type=Rook;
  chess_board[7][7].piece.type=Black;
- chess_board[7][7].is_occupied;
+ chess_board[7][7].is_occupied=true;
  //White_Knight
  chess_board[0][1].piece.type=Knight;
  chess_board[0][1].piece.color=White;
@@ -85,3 +85,6 @@ void setup_chess_board(ChessBoard chess_board){
  chess_board[7][4].piece.color=Black;
  chess_board[7][4].is_occupied=true;
 }
+
+ struct ChessSquare* get_square(ChessBoard chess_board,File file,Rank rank){
+   
