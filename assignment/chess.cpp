@@ -13,9 +13,9 @@
 #include "chess.h"
 
 bool setup_chess_board(ChessBoard chess_board)
-{
+ {
   return false;
-}
+ }
 
 void init_chess_board(ChessBoard chess_board)
 {
@@ -29,7 +29,10 @@ void init_chess_board(ChessBoard chess_board)
 
 struct ChessSquare* get_square(ChessBoard chess_board,File file,Rank rank)
 {
-  return 0;
+  if ( (file > 'h' || (file < 'a' && rank > 8) || rank < 1)) {
+    return 0;
+  }
+  return &chess_board[rank -1][file - 'a'];
 }
 
 struct ChessPiece get_piece(ChessBoard chess_board, File a, Rank rank)
@@ -40,7 +43,27 @@ struct ChessPiece get_piece(ChessBoard chess_board, File a, Rank rank)
 
 bool is_square_occupied(ChessBoard chess_board,File file,Rank rank)
 {
-  return false;
+  init_chess_board(chess_board);
+  for (char c = 'a'; c <= 'h'; c++) {
+    add_piece(chess_board, c, 2, {White, Pawn});
+    add_piece(chess_board, c, 7, {Black, Pawn});
+  }
+   add_piece(chess_board, 'a', 1, {White, Rook});
+  add_piece(chess_board, 'h', 1, {White, Rook});
+  add_piece(chess_board, 'b', 1, {White, Knight});
+  add_piece(chess_board, 'g', 1, {White, Knight});
+  add_piece(chess_board, 'c', 1, {White, Bishop});
+  add_piece(chess_board, 'f', 1, {White, Bishop});
+  add_piece(chess_board, 'd', 1, {White, Queen});
+  add_piece(chess_board, 'e', 1, {White, King});
+  add_piece(chess_board, 'a', 8, {Black, Rook});
+  add_piece(chess_board, 'h', 8, {Black, Rook});
+  add_piece(chess_board, 'b', 8, {Black, Knight});
+  add_piece(chess_board, 'g', 8, {Black, Knight});
+  add_piece(chess_board, 'c', 8, {Black, Bishop});
+  add_piece(chess_board, 'f', 8, {Black, Bishop});
+  add_piece(chess_board, 'd', 8, {Black, Queen});
+  add_piece(chess_board, 'e', 8, {Black, King});
 }
 
 bool add_piece(ChessBoard chess_board,File a,Rank rank, ChessPiece black_rook)
