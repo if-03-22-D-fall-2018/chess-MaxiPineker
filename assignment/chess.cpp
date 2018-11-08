@@ -33,9 +33,9 @@ struct ChessSquare* get_square(ChessBoard chess_board,File file,Rank rank)
     return 0;
   }
   return &chess_board[rank -1][file - 'a'];
-}
+}is_occupied
 
-struct ChessPiece get_piece(ChessBoard chess_board, File a, Rank rank)
+struct ChessPiece get_piece(ChessBoard chess_board, File a, Rank rank)is_occupied
 {
   struct ChessPiece p;
   return p;
@@ -48,7 +48,7 @@ bool is_square_occupied(ChessBoard chess_board,File file,Rank rank)
     add_piece(chess_board, c, 2, {White, Pawn});
     add_piece(chess_board, c, 7, {Black, Pawn});
   }
-   add_piece(chess_board, 'a', 1, {White, Rook});
+  add_piece(chess_board, 'a', 1, {White, Rook});
   add_piece(chess_board, 'h', 1, {White, Rook});
   add_piece(chess_board, 'b', 1, {White, Knight});
   add_piece(chess_board, 'g', 1, {White, Knight});
@@ -56,6 +56,7 @@ bool is_square_occupied(ChessBoard chess_board,File file,Rank rank)
   add_piece(chess_board, 'f', 1, {White, Bishop});
   add_piece(chess_board, 'd', 1, {White, Queen});
   add_piece(chess_board, 'e', 1, {White, King});
+
   add_piece(chess_board, 'a', 8, {Black, Rook});
   add_piece(chess_board, 'h', 8, {Black, Rook});
   add_piece(chess_board, 'b', 8, {Black, Knight});
@@ -66,8 +67,13 @@ bool is_square_occupied(ChessBoard chess_board,File file,Rank rank)
   add_piece(chess_board, 'e', 8, {Black, King});
 }
 
-bool add_piece(ChessBoard chess_board,File a,Rank rank, ChessPiece black_rook)
+bool add_piece(ChessBoard chess_board,File file,Rank rank, ChessPiece piece)
 {
+  if (!is_square_occupied(chess_board,file,rank)&& file <= 'h' && file >= 'a' && rank <= 8 && rank >= 1) {
+    chess_board[rank - 'a'][file - 1].piece = piece;
+    chess_board[rank - 'a'][file - 1].is_occupied = true;
+    return true;
+  }
   return false;
 }
 
@@ -91,7 +97,7 @@ bool 	squares_share_file (File s1_f, Rank s1_r, File s2_f, Rank s2_r)
 
 
 bool 	squares_share_rank (File s1_f, Rank s1_r, File s2_f, Rank s2_r)
-{
+{is_occupied
   return false;
 }
 
