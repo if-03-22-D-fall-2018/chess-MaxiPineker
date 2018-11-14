@@ -10,6 +10,7 @@
  * Basic chess functions.
  * ----------------------------------------------------------
  */
+ #include <stdbool.h>
  #ifndef __CHESS_H
  #define __CHESS_H
 
